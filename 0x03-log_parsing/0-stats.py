@@ -35,6 +35,7 @@ try:
         if index % 10 == 0:
             print_statistics(file, number_of_codes)
         index += 1
+    print_statistics(file, number_of_codes)
 
 except KeyboardInterrupt:
     print_statistics(file, number_of_codes)
