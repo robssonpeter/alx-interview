@@ -1,21 +1,26 @@
 #!/usr/bin/python3
+""" The function that is going to determin valid utf-8 characters """
+
 
 def validUTF8(data):
-    num_bytes_to_follow = 0  # Number of expected continuation bytes
+    """ Number of expected continuation bytes """
+    num_bytes_to_follow = 0
 
-    # Iterate through each integer in the data list
+    """ Iterate through each integer in the data list """
     for byte in data:
-        # Ensure that only the 8 least significant bits are considered
+        """ Ensure that only the 8 least significant bits are considered """
         byte = byte & 0xFF
 
-        # If we are expecting continuation bytes
+        """ If we are expecting continuation bytes """
         if num_bytes_to_follow > 0:
-            # Check if the byte is a valid continuation byte (starts with "10")
+            """ Check if the byte is a valid
+            continuation byte (starts with "10") """
             if (byte >> 6) != 0b10:
                 return False
-            num_bytes_to_follow -= 1  # Decrement the number of expected continuation bytes
+            """ Decrement the number of expected continuation bytes """
+            num_bytes_to_follow -= 1
         else:
-            # Determine the number of bytes in the UTF-8 character
+            """ Determine the number of bytes in the UTF-8 character """
             if (byte >> 7) == 0b0:
                 num_bytes_to_follow = 0
             elif (byte >> 5) == 0b110:
@@ -27,5 +32,5 @@ def validUTF8(data):
             else:
                 return False  # Invalid UTF-8 start byte
 
-    # If we have any remaining continuation bytes, it's not valid UTF-8
+    """ If we have any remaining continuation bytes, it's not valid UTF-8 """
     return num_bytes_to_follow == 0
