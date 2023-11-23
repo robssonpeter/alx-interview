@@ -17,6 +17,9 @@ def makeChange(coins, total):
     while (current_index <= len(coins)):
         if current_index >= len(coins):
             break
+        if total == coins[current_index]:
+            coin_count = coin_count + 1
+            break
         if current_index == len(coins) - 1:
             if total - added < coins[current_index]:
                 coin_count = -1
