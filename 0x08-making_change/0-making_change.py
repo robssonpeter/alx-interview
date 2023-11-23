@@ -12,7 +12,7 @@ def makeChange(coins, total):
     coin_count = 0
     added = 0
     current_index = 0
-    if total == 0:
+    if total <= 0:
         return 0
     while (current_index <= len(coins)):
         if current_index >= len(coins):
