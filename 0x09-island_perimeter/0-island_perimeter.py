@@ -11,16 +11,28 @@ def island_perimeter(grid):
         for col in range(columns):
             if grid[row][col]:
                 """ Check the top"""
-                top = grid[row - 1][col]
+                if row > 0:
+                    top = grid[row - 1][col]
+                else:
+                    top = 0
                 if top == 0:
                     length += 1
-                left = grid[row][col - 1]
+                if col > 0:
+                    left = grid[row][col - 1]
+                else:
+                    left = 0
                 if left == 0:
                     length += 1
-                right = grid[row][col + 1]
+                if col < len(range(columns)) - 1:
+                    right = grid[row][col + 1]
+                else:
+                    right = 0
                 if right == 0:
                     length += 1
-                bottom = grid[row + 1][col]
+                if row < len(range(rows)) - 1:
+                    bottom = grid[row + 1][col]
+                else:
+                    bottom = 0
                 if bottom == 0:
                     length += 1
     return length
