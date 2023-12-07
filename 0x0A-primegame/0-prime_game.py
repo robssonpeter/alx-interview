@@ -30,9 +30,9 @@ def isWinner(x, nums):
         for num in round_nums:
             if is_prime(num):
                 if maria_turn:
-                    return "Ben"
+                    return "Maria"
                 maria_turn = not maria_turn
-        return "Maria"
+        return "Ben"
 
     wins = {"Maria": 0, "Ben": 0}
 
